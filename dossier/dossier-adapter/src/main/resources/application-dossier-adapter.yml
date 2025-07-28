@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    dossier:
+      jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3300/nation}
+      username: ${SPRING_DATASOURCE_USERNAME:root}
+      password: ${SPRING_DATASOURCE_PASSWORD:}
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

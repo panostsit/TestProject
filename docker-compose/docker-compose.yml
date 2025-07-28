@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ../web-ui
+      dockerfile: /docker/Dockerfile
+    image: my-angular-app
+    ports:
+      - "4200:80"
+    environment:
+      - API_URL=http://backend:8080
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ../
+      dockerfile: /dossier/dossier-app/src/main/docker/Dockerfile
+    image: my-spring-app:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/nation
+      SPRING_DATASOURCE_USERNAME: mariadb
+      SPRING_DATASOURCE_PASSWORD: mariadb
+      PORT: 8080
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:11.3
+    environment:
+      MARIADB_DATABASE: nation
+      MARIADB_USER: mariadb
+      MARIADB_PASSWORD: mariadb
+      MARIADB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+volumes:
+  mariadb_data:
