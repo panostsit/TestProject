@@ -1,0 +1,13 @@
+<div class="button-wrapper">
+  <button matButton="elevated" [routerLink]="'/countries'">Back</button>
+</div>
+
+<h3 mat-subheader>Spoken Languages for {{localStorage.getItem('countryName')}}</h3>
+
+<mat-list role="list">
+  @for (language of languages; track language.id; let i = $index;) {
+    <mat-list-item>
+      <span class="mat-line">{{ i + 1 }}. {{ language.name }}</span>
+    </mat-list-item>
+  }
+</mat-list>

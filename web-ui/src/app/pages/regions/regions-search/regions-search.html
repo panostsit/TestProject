@@ -1,0 +1,62 @@
+<form [formGroup]="regionForm" (ngSubmit)="onSubmit()">
+  <mat-card class="table-card">
+    <mat-card-title>Search filters</mat-card-title>
+    <div class="mat-elevation-z8">
+      <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="regionName" placeholder="Select region">
+              @for (region of Object.values(RegionEnum); track region) {
+                <mat-option [value]="region">{{ region }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Year from</mat-label>
+            <input matInput formControlName="countryStatsYearFrom" placeholder="Enter the year from" />
+
+            @let yearFromControl = regionForm.get('countryStatsYearFrom');
+
+            @if (yearFromControl && yearFromControl.hasError('min')) {
+              <mat-error>Minimum allowed value is {{yearMinimumValue}}</mat-error>
+            }
+
+            @if (yearFromControl && yearFromControl.hasError('pattern')) {
+              <mat-error>Incorrect year format</mat-error>
+            }
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Year to</mat-label>
+            <input matInput formControlName="countryStatsYearTo" placeholder="Enter the year to" />
+
+            @let yearToControl = regionForm.get('countryStatsYearTo');
+
+            @if (yearToControl && yearToControl.hasError('min')) {
+              <mat-error>Minimum allowed value is {{yearMinimumValue}}</mat-error>
+            }
+
+            @if (yearToControl && yearToControl.hasError('pattern')) {
+              <mat-error>Incorrect year format</mat-error>
+            }
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div class="button-wrapper">
+      <button mat-raised-button color="primary" type="submit" [disabled]="regionForm.invalid">Submit</button>
+    </div>
+  </mat-card>
+</form>

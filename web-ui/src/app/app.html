@@ -1,0 +1,24 @@
+@if (router.url === '/') {
+  <div>
+    <button class='custom-trigger' mat-button [matMenuTriggerFor]="appMenu" style="font-size: 2em">Menu</button>
+  </div>
+
+  <mat-menu #appMenu="matMenu">
+    <button class='menu-item' mat-menu-item [routerLink]="'/countries'">
+      <mat-icon>chevron_right</mat-icon>
+      List of countries
+    </button>
+    <button class='menu-item' mat-menu-item [routerLink]="'/statistics'">
+      <mat-icon>chevron_right</mat-icon>
+      List of countries with statistics
+    </button>
+    <button  class='menu-item' mat-menu-item [routerLink]="'/regions'">
+      <mat-icon>chevron_right</mat-icon>
+      List of regions
+    </button>
+  </mat-menu>
+}
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

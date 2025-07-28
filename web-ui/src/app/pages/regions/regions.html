@@ -1,0 +1,14 @@
+<div class="button-wrapper">
+  <button matButton="elevated" [routerLink]="'/'">Back</button>
+</div>
+
+<app-regions-search
+  [pageSize]="pageSize"
+  (searchResults)="onSearchResults($event)">
+</app-regions-search>
+
+<app-regions-table
+  [dataSource]="dataSource"
+  [formData]="formData"
+  (pageChange)="onPageChange($event)">
+</app-regions-table>
