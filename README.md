@@ -15,7 +15,7 @@ Some core dependencies used for the backend are:
 
 The frontend was developed with Angular 20. For the styling, the Angular Materials library was used.
 
-There is also a [docker-compose/docker-compose.yml] file to quickly setup and test the application (it includes a service for the frontend, a service for the backend and a service for the MariaDB);
+There is also a [docker-compose](./docker-compose/docker-compose.yml) file to quickly setup and test the application (it includes a service for the frontend, a service for the backend and a service for the MariaDB);
 
 The basic functionality follows:
 
